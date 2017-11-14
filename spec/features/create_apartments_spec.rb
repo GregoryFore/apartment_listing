@@ -31,6 +31,8 @@ RSpec.feature "CreateApartments", type: :feature do
         fill_in('apartment_bm_name', :with => 'Greg')
         fill_in('apartment_bm_phone', :with => '777-777-7777')
         fill_in('apartment_bm_hours', :with => '2-4pm')
+        #attach image file
+        attach_file('apartment[image]', Rails.root + 'app/assets/images/apartment1.jpg')
         click_button('Create Apartment')
       end
       Then "I expect to see the apartment info" do
@@ -45,6 +47,8 @@ RSpec.feature "CreateApartments", type: :feature do
         expect(page).to have_content('Bm name: Greg')
         expect(page).to have_content('Bm phone: 777-777-7777')
         expect(page).to have_content('Bm hours: 2-4pm')
+        #look for image on show page
+        expect(page).to have_xpath("//img[contains(@src, 'apartment1.jpg')]")
       end
     end
   end
@@ -63,6 +67,8 @@ RSpec.feature "CreateApartments", type: :feature do
         fill_in('apartment_bm_name', :with => 'Greg')
         fill_in('apartment_bm_phone', :with => '777-777-7777')
         fill_in('apartment_bm_hours', :with => '2-4pm')
+        #attach image file
+        attach_file('apartment[image]', Rails.root + 'app/assets/images/apartment1.jpg')
         click_button('Create Apartment')
       end
       Then "I can go back to the apartment listings and see my new apartment listing there" do

@@ -50,5 +50,7 @@
   <%= @apartment.bm_hours %>
 </p>
 
+ <%= link_to image_tag(@apartment.image.url(:large)), @apartment.image.url %>
+
 <%= link_to 'Edit', edit_apartment_path(@apartment) %> |
 <%= link_to 'Back', apartments_path %>
