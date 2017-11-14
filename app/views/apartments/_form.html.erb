@@ -1,0 +1,67 @@
+<%= form_with(model: apartment, local: true) do |form| %>
+  <% if apartment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(apartment.errors.count, "error") %> prohibited this apartment from being saved:</h2>
+
+      <ul>
+      <% apartment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Address_1 %>
+    <%= form.text_field :address_1, id: :apartment_address_1 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Address_2 %>
+    <%= form.text_field :address_2, id: :apartment_address_2 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :City %>
+    <%= form.text_field :city, id: :apartment_city %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Postal %>
+    <%= form.text_field :postal, id: :apartment_postal %>
+  </div>
+
+  <div class="field">
+    <%= form.label :State %>
+    <%= form.text_field :state, id: :apartment_state %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Country %>
+    <%= form.text_field :country, id: :apartment_country %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Contact_Info %>
+    <%= form.text_field :contact_info, id: :apartment_contact_info %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Building_Manager_name %>
+    <%= form.text_field :bm_name, id: :apartment_bm_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Building_Manager_phone %>
+    <%= form.text_field :bm_phone, id: :apartment_bm_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Building_Manager_hours %>
+    <%= form.text_field :bm_hours, id: :apartment_bm_hours %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
