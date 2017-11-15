@@ -1,30 +1,7 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Apartments</h1>
-
+<h1>Search results</h1>
 <table>
-  <thead>
-    <tr>
-      <th>Address 1</th>
-      <th>Address 2</th>
-      <th>City</th>
-      <th>Postal</th>
-      <th>State</th>
-      <th>Country</th>
-      <th>Contact info</th>
-      <th>Building manager name</th>
-      <th>Building manager phone</th>
-      <th>Building manager hours</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <br />
-  <form action="search_all" method="get">
-    <input type="text" name="search_all" placeholder="Search for apartment">
-    <input type="submit" value="Search" />
-  </form>
-  <br>
+
   <tbody>
     <% @apartments.each do |apartment| %>
       <tr>
@@ -45,7 +22,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Apartment', new_apartment_path %>

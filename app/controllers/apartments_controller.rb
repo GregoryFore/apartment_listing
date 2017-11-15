@@ -61,6 +61,12 @@ class ApartmentsController < ApplicationController
     end
   end
 
+  def search_all
+    @apartments = Apartment.basic_search(params[:search_all])
+    # raise params.inspect
+    render 'searchresults.html.erb'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_apartment
@@ -71,4 +77,5 @@ class ApartmentsController < ApplicationController
     def apartment_params
       params.require(:apartment).permit(:address_1, :address_2, :city, :postal, :state, :country, :contact_info, :bm_name, :bm_phone, :bm_hours, :image)
     end
+
 end
