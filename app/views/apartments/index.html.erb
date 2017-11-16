@@ -1,5 +1,19 @@
 <p id="notice"><%= notice %></p>
-
+<%= flash[:alert] %>
+<br  />
+<% if user_signed_in? %>
+<p>Welcome, <%= current_user.email %></p>
+<% end %>
+<br>
+<% if user_signed_in? %>
+<p>
+  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+</p>
+<% else %>
+  <p>
+  <%= link_to('Login', new_user_session_path)  %>
+</p>
+<% end %>
 <h1>Apartments</h1>
 
 <table>
@@ -24,7 +38,8 @@
     <input type="text" name="search_all" placeholder="Search for apartment">
     <input type="submit" value="Search" />
   </form>
-  <br>
+  <br />
+  <br />
   <tbody>
     <% @apartments.each do |apartment| %>
       <tr>
@@ -39,8 +54,10 @@
         <td><%= apartment.bm_phone %></td>
         <td><%= apartment.bm_hours %></td>
         <td><%= link_to 'Show', apartment %></td>
+        <% if user_signed_in? && current_user.id == apartment.user_id%>
         <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
         <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
