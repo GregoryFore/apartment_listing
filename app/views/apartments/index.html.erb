@@ -15,6 +15,10 @@
 </p>
 <% end %>
 <h1>Apartments</h1>
+<form action="search_all" method="get">
+  <input type="text" name="search_all" placeholder="Search for apartment" />
+  <input type="submit" value="Search" />
+</form>
 
 <table>
   <thead>
@@ -33,13 +37,6 @@
     </tr>
   </thead>
 
-  <br />
-  <form action="search_all" method="get">
-    <input type="text" name="search_all" placeholder="Search for apartment" />
-    <input type="submit" value="Search" />
-  </form>
-  <br />
-  <br />
   <tbody>
     <% @apartments.each do |apartment| %>
       <tr>
