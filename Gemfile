@@ -10,7 +10,6 @@ gem 'omniauth-facebook'
 gem 'textacular'
 gem 'cancancan'
 gem 'rolify'
-gem 'aws-sdk', '~> 2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
@@ -19,6 +18,7 @@ gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'paperclip'
+gem 'aws-sdk', '~> 2.3'
 
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
