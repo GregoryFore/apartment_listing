@@ -8,6 +8,7 @@ class ApartmentsController < ApplicationController
   # GET /apartments.json
   def index
     @apartments = Apartment.all
+    @ability = Ability.new(current_user)
 
   end
 

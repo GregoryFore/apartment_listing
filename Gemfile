@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+# ruby '2.3.4'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -9,6 +10,7 @@ gem 'omniauth-facebook'
 gem 'textacular'
 gem 'cancancan'
 gem 'rolify'
+gem 'aws-sdk', '~> 2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record
