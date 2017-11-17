@@ -69,7 +69,7 @@ class ApartmentsController < ApplicationController
 
   def search_all
     @apartments = Apartment.basic_search(params[:search_all])
-    raise params.inspect
+    # raise params.inspect
     render 'searchresults.html.erb'
   end
 
