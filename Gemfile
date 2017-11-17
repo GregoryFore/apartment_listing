@@ -7,6 +7,8 @@ end
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'textacular'
+gem 'cancancan'
+gem 'rolify'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
 # Use postgresql as the database for Active Record

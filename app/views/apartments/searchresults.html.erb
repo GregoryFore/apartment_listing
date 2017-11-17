@@ -1,7 +1,21 @@
 <h1>Search results</h1>
 <table>
-
-
+  <thead>
+    <tr>
+      <th>Address 1</th>
+      <th>Address 2</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Postal</th>
+      <th>Country</th>
+      <th>Contact info</th>
+      <th>Building manager name</th>
+      <th>Building manager phone</th>
+      <th>Building manager hours</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <br />
   <tbody>
     <% @apartments.each do |apartment| %>
       <tr>
@@ -15,9 +29,11 @@
         <td><%= apartment.bm_name %></td>
         <td><%= apartment.bm_phone %></td>
         <td><%= apartment.bm_hours %></td>
-        <td><%= link_to 'Show', apartment %></td>
-        <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-        <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if @ability.can? :manage, Apartment %>
+          <td><%= link_to 'Show', apartment %></td>
+          <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
+          <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

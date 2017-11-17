@@ -7,8 +7,13 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
+    <p>
+      <%= if !current_user.nil?
+        current_user.email + ' (' + current_user.roles.pluck(:name).join(",") + ')'
+        end
+      %>
+    </p>
     <%= yield %>
   </body>
 </html>

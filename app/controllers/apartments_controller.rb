@@ -1,6 +1,7 @@
 class ApartmentsController < ApplicationController
   before_action :set_apartment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  load_and_authorize_resource
 
 
   # GET /apartments
@@ -17,11 +18,7 @@ class ApartmentsController < ApplicationController
 
   # GET /apartments/new
   def new
-    if user_signed_in?
-      @apartment = current_user.apartments.build
-    else
-      flash[:alert] = "You do not have permission to do this."
-    end
+    @apartment = current_user.apartments.build
   end
 
   # GET /apartments/1/edit
@@ -48,40 +45,24 @@ class ApartmentsController < ApplicationController
   # PATCH/PUT /apartments/1
   # PATCH/PUT /apartments/1.json
   def update
-    if user_signed_in?
-      if current_user.id == @apartment.user_id
-        respond_to do |format|
-          if @apartment.update(apartment_params)
-            format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
-            format.json { render :show, status: :ok, location: @apartment }
-          else
-            format.html { render :edit }
-            format.json { render json: @apartment.errors, status: :unprocessable_entity }
-          end
-        end
+    respond_to do |format|
+      if @apartment.update(apartment_params)
+        format.html { redirect_to @apartment, notice: 'Apartment was successfully updated.' }
+        format.json { render :show, status: :ok, location: @apartment }
       else
-        flash[:alert] = "You do not have permission to do this."
+        format.html { render :edit }
+        format.json { render json: @apartment.errors, status: :unprocessable_entity }
       end
-    else
-      flash[:alert] = "You do not have permission to do this."
     end
   end
 
   # DELETE /apartments/1
   # DELETE /apartments/1.json
   def destroy
-    if user_signed_in?
-      if current_user.id == @apartment.user_id
-        @apartment.destroy
-        respond_to do |format|
-          format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
-          format.json { head :no_content }
-        end
-      else
-        flash[:alert] = "You do not have permission to do this."
-      end
-    else
-      flash[:alert] = "You do not have permission to do this."
+    @apartment.destroy
+    respond_to do |format|
+      format.html { redirect_to apartments_url, notice: 'Apartment was successfully destroyed.' }
+      format.json { head :no_content }
     end
   end
 
