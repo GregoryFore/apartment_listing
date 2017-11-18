@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+#container {
+  width: 80%;
+  margin: 0 auto;
+}
+table, th, td {
+  /*width: 100%;*/
+  border-width: 1px;
+  border-style: solid;
+  border-color: black;
+  border-collapse: collapse;
+  padding: 10px;
+}
+/*.signin_login, .user_name_status {
+    text-align: right;
+}*/

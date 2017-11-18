@@ -10,8 +10,8 @@ class Ability
       can :manage, :all
     elsif user.has_role? :manager
       can :manage, Apartment, user_id: user.id
-    else 
-      can :read, Apartment
+    else
+      can [:read, :search_all], Apartment 
     end
     # Define abilities for the passed in user here. For example:
     #

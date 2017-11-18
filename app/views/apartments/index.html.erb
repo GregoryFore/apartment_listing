@@ -1,25 +1,11 @@
 <p id="notice"><%= notice %></p>
-
-<br  />
-<% if user_signed_in? %>
-<p>Welcome, <%= current_user.email %></p>
-<% end %>
-<br>
-<% if user_signed_in? %>
-<p>
-  <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
-</p>
-<% else %>
-  <p>
-  <%= link_to('Login', new_user_session_path)  %>
-</p>
-<% end %>
 <h1>Apartments</h1>
+<br />
 <form action="search_all" method="get">
   <input type="text" name="search_all" placeholder="Search for apartment" />
   <input type="submit" value="Search" />
 </form>
-
+<br />
 <table>
   <thead>
     <tr>
@@ -33,7 +19,9 @@
       <th>Building manager name</th>
       <th>Building manager phone</th>
       <th>Building manager hours</th>
-      <th colspan="3"></th>
+      <% if !current_user.nil? %>
+        <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -50,10 +38,12 @@
         <td><%= apartment.bm_name %></td>
         <td><%= apartment.bm_phone %></td>
         <td><%= apartment.bm_hours %></td>
-        <% if @ability.can? :manage, Apartment %>
-          <td><%= link_to 'Show', apartment %></td>
-          <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
-          <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if !current_user.nil? %>
+            <td><%= link_to 'Show', apartment %></td>
+          <% if @ability.can? :manage, Apartment %>
+            <td><%= link_to 'Edit', edit_apartment_path(apartment) %></td>
+            <td><%= link_to 'Destroy', apartment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
         <%end%>
       </tr>
     <% end %>
@@ -61,5 +51,6 @@
 </table>
 
 <br>
-
+<%if @ability.can? :manage, Apartment%>
 <%= link_to 'New Apartment', new_apartment_path %>
+<%end%>

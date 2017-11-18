@@ -8,12 +8,27 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-    <p>
-      <%= if !current_user.nil?
-        current_user.email + ' (' + current_user.roles.pluck(:name).join(",") + ')'
-        end
-      %>
-    </p>
+  <div id="container">
+    <div class="user_name_status">
+      <p>
+        <%= if !current_user.nil?
+          current_user.email + ' (' + current_user.roles.pluck(:name).join(",") + ')'
+          end
+        %>
+      </p>
+    </div>
+      <div class="signin_login">
+        <% if user_signed_in? %>
+        <p>
+        <%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+        </p>
+        <% else %>
+        <p>
+        <%= link_to('Login', new_user_session_path)  %>
+        </p>
+        <% end %>
+      </div>
     <%= yield %>
-  </body>
+  </div>
+</body>
 </html>
